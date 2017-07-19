@@ -3,14 +3,13 @@ addons:
   apt:
     packages:
       - gfortran
-      - r-base
+r:
+  - release
 env:
   - R_LIBS_USER=~/R/library
-
 cache:
   directories:
     $R_LIBS_USER
-
 python:
   - '2.7'
   - '3.4'
