@@ -2,6 +2,7 @@ language: python
 addons:
   apt:
     packages:
+      - gfortran
       - r-base
 env:
   - R_LIBS_USER=~/R/library
