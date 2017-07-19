@@ -11,3 +11,7 @@ Dependencies
 - fortran compiler
 - R 3.4.1 with package 'pROC' installed
 
+Installation
+------------
+- `pip install -r requirements.txt`
+- `pip install .`
