@@ -25,7 +25,8 @@ setup(name='mltools',
           'pandas',
           'scikit-learn',
           'rpy2',
-          'numpy'
+          'numpy',
+          'scipy'
       ],
       extras_require={
           'test': ['pytest'],
