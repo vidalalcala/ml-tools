@@ -23,10 +23,10 @@ setup(name='mltools',
       install_requires=[
           'click',
           'pandas',
+          'scipy',
           'scikit-learn',
           'rpy2',
-          'numpy',
-          'scipy'
+          'numpy'
       ],
       extras_require={
           'test': ['pytest'],
