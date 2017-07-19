@@ -3,7 +3,7 @@ python:
   - '2.7'
   - '3.4'
 before_install:
-  - apt-get install r-base
+  - sudo apt-get install r-base
   - Rscript -e 'install.packages("pROC")'
 install:
   - 'pip install coveralls'
