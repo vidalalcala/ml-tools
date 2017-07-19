@@ -1,28 +1,31 @@
-language:
-  - r
-  - python
+language: python
+services:
+  - docker
 addons:
   apt:
     packages:
       - gfortran
-r:
-  - release
+      - r-base
 env:
   - R_LIBS_USER=~/R/library
+
 cache:
   directories:
     $R_LIBS_USER
+
 python:
   - '2.7'
   - '3.4'
 before_install:
+  - docker pull ubuntu:16.04
   - mkdir -p "$R_LIBS_USER"
   - Rscript -e 'install.packages("ggplot2", dependencies = TRUE, repos = "http://cran.us.r-project.org")'
   - Rscript -e 'install.packages("pROC", dependencies = TRUE, repos = "http://cran.us.r-project.org")'
 install:
   - 'pip install coveralls'
   - 'python setup.py install'
-script: 
+script:
+  - docker build .
   - py.test
   - coverage run --source=ml-tools -m py.test
 after_success:
