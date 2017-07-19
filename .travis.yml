@@ -3,11 +3,19 @@ addons:
   apt:
     packages:
       - r-base
+env:
+  - R_LIBS_USER=~/R/library
+
+cache:
+  directories:
+    $R_LIBS_USER
+
 python:
   - '2.7'
   - '3.4'
 before_install:
-  - Rscript -e 'install.packages("pROC", lib="/home/travis/R-bin/lib/R/library/")'
+  - mkdir -p "$R_LIBS_USER"
+  - Rscript -e 'install.packages("pROC")'
 install:
   - 'pip install coveralls'
   - 'python setup.py install'
