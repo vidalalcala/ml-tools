@@ -8,5 +8,6 @@ Python Machine Learning Tools
 Dependencies
 ------------
 
+- fortran compiler
 - R 3.4.1 with package 'pROC' installed
 

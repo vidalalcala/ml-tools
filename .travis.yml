@@ -16,6 +16,7 @@ python:
   - '3.4'
 before_install:
   - mkdir -p "$R_LIBS_USER"
+  - Rscript -e 'install.packages("ggplot2", dependencies = TRUE, repos = "http://cran.us.r-project.org")'
   - Rscript -e 'install.packages("pROC", dependencies = TRUE, repos = "http://cran.us.r-project.org")'
 install:
   - 'pip install coveralls'
