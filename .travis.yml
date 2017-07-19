@@ -4,7 +4,7 @@ python:
   - '3.4'
 before_install:
   - sudo apt-get install r-base
-  - Rscript -e 'install.packages("pROC")'
+  - Rscript -e 'install.packages("pROC", lib="/home/travis/R-bin/lib/R/library/")'
 install:
   - 'pip install coveralls'
   - 'python setup.py install'
