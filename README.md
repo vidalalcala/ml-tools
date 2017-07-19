@@ -5,3 +5,8 @@ ml-tools
 
 Python Machine Learning Tools
 
+Dependencies
+------------
+
+- R 3.4.1 with package 'pROC' installed
+
