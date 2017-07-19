@@ -1,4 +1,6 @@
-language: r, python
+language:
+  - r
+  - python
 addons:
   apt:
     packages:
