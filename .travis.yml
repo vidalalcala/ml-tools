@@ -13,4 +13,4 @@ script:
   - coverage run --source=ml-tools -m py.test
 after_success:
   - coveralls
-sudo: required
+sudo: True
