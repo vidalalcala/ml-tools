@@ -1,11 +1,8 @@
 language: python
-services:
-  - docker
 addons:
   apt:
     packages:
       - gfortran
-      - r-base
 env:
   - R_LIBS_USER=~/R/library
 
@@ -17,7 +14,11 @@ python:
   - '2.7'
   - '3.4'
 before_install:
-  - docker pull ubuntu:16.04
+  - sudo sh -c 'echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list'
+  - gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
+  - gpg -a --export E084DAB9 | sudo apt-key add -
+  - sudo apt-get update
+  - sudo apt-get -y install r-base
   - mkdir -p "$R_LIBS_USER"
   - Rscript -e 'install.packages("ggplot2", dependencies = TRUE, repos = "http://cran.us.r-project.org")'
   - Rscript -e 'install.packages("pROC", dependencies = TRUE, repos = "http://cran.us.r-project.org")'
@@ -25,7 +26,6 @@ install:
   - 'pip install coveralls'
   - 'python setup.py install'
 script:
-  - docker build .
   - py.test
   - coverage run --source=ml-tools -m py.test
 after_success:
