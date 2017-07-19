@@ -24,7 +24,7 @@ before_install:
   - Rscript -e 'install.packages("pROC", dependencies = TRUE, repos = "http://cran.us.r-project.org")'
 install:
   - 'pip install coveralls'
-  - 'pip install --no-index --find-links=./ mltools'
+  - 'pip install mltools'
 script:
   - py.test
   - coverage run --source=ml-tools -m py.test
