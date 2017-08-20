@@ -34,7 +34,7 @@ install:
   - 'cd ..'
   - 'pip install .'
 script:
-  - py.test
+  - py.test --ignore=xgboost
   - coverage run --source=ml-tools -m py.test
 after_success:
   - coveralls
