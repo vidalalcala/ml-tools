@@ -22,7 +22,7 @@ setup(name='mltools',
       zip_safe=False,
       install_requires=[
           'click',
-          'rpy2',
+          'rpy2==2.8.4',
           'scikit-learn',
           'scipy',
           'pandas',
