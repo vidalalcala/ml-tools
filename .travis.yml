@@ -25,6 +25,9 @@ before_install:
 install:
   - 'cd xgboost'
   - 'sh build.sh'
+  - 'cd python-package'
+  - 'pip install .'
+  - 'cd ..'
   - 'cd ..'
   - 'pip install coveralls'
   - 'pip install -r requirements.txt'
