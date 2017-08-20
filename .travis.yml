@@ -23,7 +23,9 @@ before_install:
   - Rscript -e 'install.packages("ggplot2", dependencies = TRUE, repos = "http://cran.us.r-project.org")'
   - Rscript -e 'install.packages("pROC", dependencies = TRUE, repos = "http://cran.us.r-project.org")'
 install:
-  - 'sh xgboost/build.sh'
+  - 'cd xgboost'
+  - 'sh build.sh'
+  - 'cd ..'
   - 'pip install coveralls'
   - 'pip install -r requirements.txt'
   - 'pip install .'
