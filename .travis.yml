@@ -35,7 +35,7 @@ install:
   - 'pip install .'
 script:
   - py.test --ignore=xgboost
-  - coverage run --source=ml-tools -m py.test
+  - coverage run --source=ml-tools -m py.test --ignore=xgboost
 after_success:
   - coveralls
 sudo: True
