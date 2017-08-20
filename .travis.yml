@@ -25,12 +25,14 @@ before_install:
 install:
   - 'cd xgboost'
   - 'sh build.sh'
-  - 'cd python-package'
-  - 'python setup.py install'
   - 'cd ..'
   - 'cd ..'
   - 'pip install coveralls'
   - 'pip install -r requirements.txt'
+  - 'cd xgboost/python-package'
+  - 'python setup.py install'
+  - 'cd ..'
+  - 'cd ..'
   - 'pip install .'
 script:
   - py.test
