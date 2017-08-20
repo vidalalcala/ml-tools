@@ -26,7 +26,6 @@ install:
   - 'cd xgboost'
   - 'sh build.sh'
   - 'cd ..'
-  - 'cd ..'
   - 'pip install coveralls'
   - 'pip install -r requirements.txt'
   - 'cd xgboost/python-package'
