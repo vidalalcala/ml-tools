@@ -4,8 +4,10 @@ import xgboost
 import pandas as pd
 import rpy2.robjects.packages as packages
 import rpy2.robjects.pandas2ri as pandas2ri
-import scipy.stats
-
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.backends.backend_pdf as backend_pdf
+import seaborn
 
 # R import and interfaces
 p_roc = packages.importr('pROC')
@@ -34,14 +36,28 @@ class XGBClassifierGTX(xgboost.XGBClassifier):
                  max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1,
                  reg_alpha=0, reg_lambda=1, scale_pos_weight=1,
                  base_score=0.5, random_state=0, seed=None, missing=None, **kwargs):
-        super(xgboost.XGBClassifier, self).__init__(max_depth, learning_rate,
-                                                    n_estimators, silent, objective, booster,
-                                                    n_jobs, nthread, gamma, min_child_weight,
-                                                    max_delta_step, subsample,
-                                                    colsample_bytree, colsample_bylevel,
-                                                    reg_alpha, reg_lambda,
-                                                    scale_pos_weight, base_score,
-                                                    random_state, seed, missing, **kwargs)
+        super(xgboost.XGBClassifier, self).__init__(max_depth,
+                                                    learning_rate,
+                                                    n_estimators,
+                                                    silent,
+                                                    objective,
+                                                    booster,
+                                                    n_jobs,
+                                                    nthread,
+                                                    gamma,
+                                                    min_child_weight,
+                                                    max_delta_step,
+                                                    subsample,
+                                                    colsample_bytree,
+                                                    colsample_bylevel,
+                                                    reg_alpha,
+                                                    reg_lambda,
+                                                    scale_pos_weight,
+                                                    base_score,
+                                                    random_state,
+                                                    seed,
+                                                    missing,
+                                                    **kwargs)
 
     def predict_margins(self, X):
         """
@@ -67,3 +83,11 @@ class XGBClassifierGTX(xgboost.XGBClassifier):
             margins_dict[i + 1] = next_predict_margins - predict_margins
         margins_df = pd.DataFrame(margins_dict)
         return margins_df.transpose()
+
+    def plot_margins(self, X, file_name='margins.pdf'):
+        margins = self.predict_margins(X)
+        pp = backend_pdf.PdfPages(file_name)
+        ax = seaborn.tsplot([margins[column] for column in margins])
+        ax.set(xlabel='boost_step', ylabel='margin')
+        pp.savefig()
+        pp.close()

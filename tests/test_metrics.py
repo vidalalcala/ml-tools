@@ -1,8 +1,9 @@
 import numpy as np
 import mltools.metrics
 import sklearn.datasets
-import xgboost
 import scipy.stats
+import matplotlib
+matplotlib.use('Agg')
 
 
 def test_roc_auc_score():
@@ -25,3 +26,4 @@ def test_predict_margins():
     scores = scipy.stats.logistic.cdf(margins_sum)
     predict_proba = model.predict_proba(X)[:, 1]
     np.testing.assert_almost_equal(predict_proba, scores)
+    model.plot_margins(X)
